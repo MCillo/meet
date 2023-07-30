@@ -56,3 +56,6 @@ As a User I should be able to view charts that display the details of a selected
     - Given – user has selected a city and is viewing the list of events for selected city.
     - When – user selects an event to view its details.
     - Then – chart displaying the event details is displayed.
+
+## Serverless Function Use
+This app will use Amazon Web Service Lambda for its Authorization Server. The user will log in to their Google account with their Google credentials. This will generate a consumer key and consumer secret. These will then be used to request an access token that will be used to allow the user access to use the app.
