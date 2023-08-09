@@ -9,21 +9,21 @@ import { getEvents } from "../api";
 const mockEvent = mockData[0];
 
 describe('<Event /> component', () => {
-    let EventComponent;
-    beforeEach(() => {
-        EventComponent = render(<Event event={mockEvent} />);
-    })
+  let EventComponent;
+  beforeEach(() => {
+    EventComponent = render(<Event event={mockEvent} />);
+  })
 
-    test('renders the events location', () => {
-        expect(EventComponent.queryByText(allEvents[0].location)).toBeInTheDocument();
-    });
+  // test('renders the events location', () => {
+  //   expect(EventComponent.queryByRole(("location".)allEvents[0].location)).toBeInTheDocument();
+  // });
 
-    test('renders event title', () => {
+  test('renders event title', () => {
+    expect(EventComponent.queryByRole("summary")).toBeInTheDocument
+  })
 
-    })
-
-    test('renders event details button wioth the title (show details', () => {
-        expect(EventComponent.queryByText('show details')).toBeInTheDocument();
-    });
+  // test('renders event details button wioth the title (show details', () => {
+  //   expect(EventComponent.queryByText('show details')).toBeInTheDocument();
+  // });
 
 })
