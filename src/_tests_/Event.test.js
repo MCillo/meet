@@ -1,29 +1,31 @@
-// src/_tests_/Event.test.js
+// src/_tests_/EventList.test.js
 
 import { render } from "@testing-library/react";
-import { userEvent } from "@testing-library/user-event";
 import Event from "../components/Event";
 import mockData from "../mock-data";
-import { getEvents } from "../api";
+import { UserEvent } from "@testing-library/user-event";
 
 const mockEvent = mockData[0];
 
-describe('<Event /> component', () => {
+describe('<Event />, component', () => {
   let EventComponent;
   beforeEach(() => {
-    EventComponent = render(<Event event={mockEvent} />);
-  })
+    EventComponent = render(<Event event={mockEvent} />)
+  });
 
-  // test('renders the events location', () => {
-  //   expect(EventComponent.queryByRole(("location".)allEvents[0].location)).toBeInTheDocument();
-  // });
+  test('has the events title', () => {
+    const eventTitle = EventComponent.queryByText(mockEvent.summary);
+    expect(eventTitle).toBeInTheDocument();
+  });
 
-  test('renders event title', () => {
-    expect(EventComponent.queryByRole("summary")).toBeInTheDocument
-  })
+  test('has the events location', () => {
+    const eventLocation = EventComponent.queryByText(mockEvent.location);
+    expect(eventLocation).toBeInTheDocument();
+  });
 
-  // test('renders event details button wioth the title (show details', () => {
-  //   expect(EventComponent.queryByText('show details')).toBeInTheDocument();
-  // });
+  test('has the event details button', () => {
+    const showDetailsButton = EventComponent.queryByText('Event Details');
+    expect(showDetailsButton).toBeInTheDocument();
+  });
 
 })
