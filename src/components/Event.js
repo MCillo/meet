@@ -10,7 +10,6 @@ const Event = ({ event }) => {
       <h4>{event.location}</h4>
 
       <button
-        className="showDetailsButton"
         onClick={() => {
           setShowDetails(!showDetails);
         }}
