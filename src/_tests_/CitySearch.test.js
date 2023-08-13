@@ -63,11 +63,14 @@ describe('<CitySearch /> component', () => {
         const user = userEvent.setup();
         const allEvents = await getEvents();
         const allLocations = extractLocations(allEvents);
-        CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
+        CitySearchComponent.rerender(<CitySearch
+            allLocations={allLocations}
+            setCurrentCity={() => { }}
+        />);
 
         const cityTextBox = screen.queryByRole('textbox');
         await user.type(cityTextBox, "Berlin");
-
+        // The suggestion's textContent look like this: "Berlin, Germamy"
         const BerlinGermanySuggestion = screen.queryAllByRole('listitem')[0];
 
         await user.click(BerlinGermanySuggestion);
