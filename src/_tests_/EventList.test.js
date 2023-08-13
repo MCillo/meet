@@ -1,10 +1,13 @@
 // src/_tests_/EventList.test.js
 
-import { render, screen } from "@testing-library/react";
 import EventList from "../components/EventList";
-import mockData from "../mock-data";
+import App from "../App";
+
+import { render, screen, waitFor, within } from "@testing-library/react";
 import { getEvents } from "../api";
 
+
+// App Unit Testing Code
 describe('<EventList /> component', () => {
   let EventListComponent;
   beforeEach(() => {
@@ -20,5 +23,18 @@ describe('<EventList /> component', () => {
     const allEvents = await getEvents();
     EventListComponent.rerender(<EventList events={allEvents} />);
     expect(screen.getAllByRole("listitem")).toHaveLength(allEvents.length);
+  });
+});
+
+// App Integration Testing Code
+describe('<EventList /> integration', () => {
+  test('renders a list of 32 events when the app is mounted and rendered', async () => {
+    const AppComponent = render(<App />);
+    const AppDOM = AppComponent.container.firstChild;
+    const EventListDOM = AppDOM.querySelector('#event-list');
+    await waitFor(() => {
+      const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+      expect(EventListItems.length).toBe(32);
+    });
   });
 });
