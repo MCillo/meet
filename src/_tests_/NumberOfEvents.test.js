@@ -4,7 +4,7 @@ import userEvent from "@testing-library/user-event";
 import NumberOfEvents from "../components/NumberOfEvents";
 import { render, screen } from "@testing-library/react";
 
-
+// App Unit Testing Code
 describe('<NumberOfEvents /> component', () => {
     let NumberOfEventsComponent;
     beforeEach(() => {
