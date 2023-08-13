@@ -3,6 +3,7 @@
 import { render, within } from '@testing-library/react';
 import App from '../App';
 import userEvent from '@testing-library/user-event';
+import { getEvents } from '../api';
 
 // App Unit Testing Code
 describe('<App /> component', () => {
@@ -40,5 +41,18 @@ describe('<App /> integration', () => {
 
     const EventListDOM = AppDOM.querySelector('#event-list');
     const allRenderedEventItems = within(EventListDOM).queryAllByRole('listitem');
-  })
+
+    const allEvents = await getEvents();
+    const berlinEvents = allEvents.filter(
+      event => event.location === 'Berlin, Germany'
+    );
+
+    expect(allRenderedEventItems.length).toBe(berlinEvents.length);
+
+    allRenderedEventItems.forEach(event => {
+      expect(event.textContent).toContain("Berlin, Germany");
+    });
+
+  });
+
 });
