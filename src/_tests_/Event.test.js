@@ -6,6 +6,7 @@ import mockData from "../mock-data";
 
 const mockEvent = mockData[0];
 
+// App Unit Testing Code
 describe('<Event />, component', () => {
   let EventComponent;
   beforeEach(() => {
