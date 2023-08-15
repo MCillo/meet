@@ -23,7 +23,7 @@ const App = () => {
     const filteredEvents = currentCity === "See all cities" ?
       allEvents :
       allEvents.filter(event => event.location === currentCity)
-    setEvents(filteredEvents.slice(0, currentNOE));
+    setEvents(filteredEvents.slice(0, currentNOE)); // error with .slice on github pages
     setAllLocations(extractLocations(allEvents));
   }
 
