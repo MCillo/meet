@@ -14,6 +14,49 @@ export const extractLocations = (events) => {
     return locations;
 };
 
+// This function will fetch the list of events
+export const getEvents = async () => {
+    // for localhost testing using mockData
+    if (window.location.href.startsWith('http://localhost')) {
+        return mockData;
+    }
+
+    const token = await getAccessToken();
+
+    if (token) {
+        removeQuery();
+        // const url = "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-events" + "/" + token; - gives warning = no-useless-concat
+        const url = "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-events/" + token;
+        const response = await fetch(url);
+        const result = await response.json();
+        if (result) {
+            return result.events;
+        } else return null;
+    }
+};
+
+// function to get access token
+export const getAccessToken = async () => {
+    const accessToken = localStorage.getItem('access_token'); // checks local storage for access token
+    const tokenCheck = accessToken && (await checkToken(accessToken));
+
+    if (!accessToken || tokenCheck.error) {
+        await localStorage.removeItem("access_token");
+        const searchParams = new URLSearchParams(window.location.search);
+        const code = await searchParams.get("code");
+        if (!code) {
+            const response = await fetch(
+                "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
+            );
+            const result = await response.json();
+            const { authUrl } = result;
+            return (window.location.href = authUrl);
+        }
+        return code && getToken(code);
+    }
+    return accessToken;
+};
+
 // function to check tokens validity
 const checkToken = async (accessToken) => {
     const response = await fetch(
@@ -39,59 +82,38 @@ const removeQuery = () => {
     }
 };
 
+// // getToken without try...catch
+// const getToken = async (code) => {
+//     const encodeCode = encodeURIComponent(code);
+//     const response = await fetch(
+//         'https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode
+//     );
+//     const { access_token } = await response.json();
+//     access_token && localStorage.setItem("access_token", access_token);
+
+//     return access_token;
+// };
+
+// getToken with try...catch
 const getToken = async (code) => {
-    const encodeCode = encodeURIComponent(code);
-    const response = await fetch(
-        'https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode
-    );
-    const { access_token } = await response.json();
-    access_token && localStorage.setItem("access_token", access_token);
+    try {
+        const encodeCode = encodeURIComponent(code);
 
-    return access_token;
-};
-
-// function to get access token
-export const getAccessToken = async () => {
-    const accessToken = localStorage.getItem('access_token'); // checks local storage for access token
-    const tokenCheck = accessToken && (await checkToken(accessToken));
-
-    if (!accessToken || tokenCheck.error) {
-        await localStorage.removeItem("access_token");
-        const searchParams = new URLSearchParams(window.location.search);
-        const code = await searchParams.get("code");
-        if (!code) {
-            const response = await fetch(
-                "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-auth-url"
-            );
-            const result = await response.json();
-            const { authUrl } = result;
-            return (window.location.href = authUrl);
+        const response = await fetch('https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
         }
-        return code && getToken(code);
+        const { access_token } = await response.json();
+        access_token && localStorage.setItem("access_token", access_token);
+        return access_token;
+    } catch (error) {
+        error.json();
     }
-    return accessToken;
-};
+}
 
-// This function will fetch the list of events
-export const getEvents = async () => {
-    // for localhost testing using mockData
-    if (window.location.href.startsWith('http://localhost')) {
-        return mockData;
-    }
 
-    const token = await getAccessToken();
 
-    if (token) {
-        removeQuery();
-        // const url = "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-events" + "/" + token; - gives warning = no-useless-concat
-        const url = "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-events/" + token;
-        const response = await fetch(url);
-        const result = await response.json();
-        if (result) {
-            return result.events;
-        } else return null;
-    }
-};
+
 
 
 
