@@ -12,7 +12,7 @@ describe('<CitySearch /> component', () => {
     let CitySearchComponent;
     beforeEach(() => {
         CitySearchComponent = render(<CitySearch allLocations={[]} />);
-    })
+    });
 
     test('renders text input', () => {
         const cityTextBox = screen.queryByRole('textbox');
