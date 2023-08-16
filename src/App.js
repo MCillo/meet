@@ -14,8 +14,6 @@ const App = () => {
   const [events, setEvents] = useState([]);
   const [currentCity, setCurrentCity] = useState("See all cities");
 
-  console.log("error");
-
   useEffect(() => {
     fetchData();
   }, [currentCity]);
