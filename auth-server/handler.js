@@ -98,23 +98,14 @@ module.exports.getCalendarEvents = async (event) => {
   })
     .then((results) => {
       // Respond with Calendar Events
-      // return {
-      //   statusCode: 200,
-      //   headers: {
-      //     'Access-Control-Allow-Origin': '*',
-      //     'Access-Control-Allow-Credentials': true,
-      //   },
-      //   body: JSON.stringify({ events: results.data.items })
-      // };
       return {
         statusCode: 200,
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Credentials': true,
         },
-        body: JSON.stringify(results),
+        body: JSON.stringify({ events: results.data.items }),
       };
-
     })
     .catch((error) => {
       // Handle error
