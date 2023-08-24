@@ -13,6 +13,7 @@ export const extractLocations = (events) => {
   const extractedLocations = events.map((event) => event.location);
   const locations = [...new Set(extractedLocations)];
   return locations;
+  console.log(locations);
 };
 
 // This function will fetch the list of events
