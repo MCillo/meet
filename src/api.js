@@ -183,6 +183,7 @@ const checkToken = async (accessToken) => {
   const result = await response.json();
   return result;
 };
+console.log(error); // Error Testing
 
 const removeQuery = () => {
   let newurl;
@@ -226,6 +227,7 @@ const getToken = async (code) => {
     access_token && localStorage.setItem("access_token", access_token);
     return access_token;
   } catch (error) {
+    console.log(error); // Error Testing
     error.json();
   }
 }
