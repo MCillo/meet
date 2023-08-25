@@ -28,7 +28,8 @@ export const getEvents = async () => {
   if (token) {
     removeQuery();
     // const url = "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-events" + "/" + token; - gives warning = no-useless-concat
-    const url = "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-events/" + token;
+    // const url = "https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/get-events/" + token;
+    const url = "https://5q09bhg4hd.execute-api.us-west-1.amazonaws.com/dev/api/get-events" + "/" + token;
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
