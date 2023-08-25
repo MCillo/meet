@@ -13,7 +13,7 @@ export const extractLocations = (events) => {
   const extractedLocations = events.map((event) => event.location);
   const locations = [...new Set(extractedLocations)];
   return locations;
-  console.log(locations);
+  //console.log(locations);
 };
 
 // This function will fetch the list of events
@@ -101,7 +101,7 @@ const getToken = async (code) => {
   try {
     const encodeCode = encodeURIComponent(code);
 
-    const response = await fetch('http://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
+    const response = await fetch('https://tki2mmw5qj.execute-api.us-east-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
