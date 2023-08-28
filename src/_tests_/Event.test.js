@@ -47,15 +47,18 @@ describe('<Event /> component', () => {
   });
 
   test('renders event Title', () => {
-    expect(EventComponent.queryByText(allEvents[0].summary)).toBeInTheDocument();
+    //expect(EventComponent.queryByText(allEvents[0].summary)).toBeInTheDocument();
+    expect(EventComponent.screen(allEvents[0].summary)).toBeInTheDocument();
   });
 
   test('renders event location', () => {
-    expect(EventComponent.queryByText(allEvents[0].location)).toBeInTheDocument();
+    //expect(EventComponent.queryByText(allEvents[0].location)).toBeInTheDocument();
+    expect(EventComponent.screen(allEvents[0].location)).toBeInTheDocument();
   });
 
   test('renders event details button with the title (show details)', () => {
-    expect(EventComponent.queryByText('show details')).toBeInTheDocument();
+    //expect(EventComponent.queryByText('show details')).toBeInTheDocument();
+    expect(EventComponent.screen('show details')).toBeInTheDocument();
   });
 
   test("by default, event's details section should be hidden", () => {
