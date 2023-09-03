@@ -19,6 +19,7 @@ export const extractLocations = (events) => {
 export const getEvents = async () => {
   // for localhost testing using mockData
   if (window.location.href.startsWith('http://localhost')) {
+    // NProgress.done();
     return mockData;
   }
 
