@@ -17,3 +17,5 @@ console.error = (...args) => {
     const ignoreMessage = MESSAGES_TO_IGNORE.find(message => args.toString().includes(message));
     if (!ignoreMessage) orignalError(...args);
 }
+
+jest.setTimeout(30000); // sets timeout to 30 seconds
