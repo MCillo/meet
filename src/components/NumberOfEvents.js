@@ -12,6 +12,7 @@ const NumberOfEvents = ({ setCurrentNOE }) => {
                 type="text"
                 defaultValue="32"
                 onChange={handleChange}
+                data-testid="numberOfEventsImput"
             />
         </div>
     )
