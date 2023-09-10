@@ -1,6 +1,6 @@
 import { loadFeature, defineFeature } from "jest-cucumber";
 import App from "../App";
-import { render, waitFor, within } from "@testing-library/react";
+import { render, waitFor, within, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 const feature = loadFeature('./src/features/SpecifyNumberOfEvents.feature');
@@ -42,9 +42,14 @@ defineFeature(feature, test => {
         when(
             'the user chooses to change the number of events displayed',
             async () => {
-                const NOEInput = AppComponent.queryByTestId('numberOfEventsInput');
+                const numberOfEventsInput = AppComponent.queryByRole('textbox');
 
-                await userEvent.type(NOEInput, '{backspace}{backspace}10');
+                // await userEvent.type(numberOfEventsInput, '{backspace}{backspace}10');
+
+                //const numberOfEventsInput = screen.queryByRole('textbox');
+                await userEvent.type(numberOfEventsInput, '{backspace}{backspace}10');
+                expect(screen.getByRole("textbox")).toHaveValue('10');
+
             });
 
         then(
