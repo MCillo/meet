@@ -1,7 +1,8 @@
-import { render, waitFor, within } from '@testing-library/react';
+/* eslint-disable testing-library/prefer-screen-queries */
+/* eslint-disable testing-library/no-node-access */
 import { loadFeature, defineFeature } from 'jest-cucumber';
 import App from '../App';
-// import { getEvents } from '../api';
+import { render, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 const feature = loadFeature('./src/features/showHideAnEventsDetails.feature');
