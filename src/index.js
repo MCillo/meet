@@ -5,8 +5,8 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 
-import * as atatus from 'atatus-spa'
-atatus.config('https://mcillo.github.io/meet/').install();
+import * as atatus from 'atatus-spa';
+atatus.config('fb0e2c6606924e2fae29bc279e15f1d0').install();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -25,4 +25,4 @@ serviceWorkerRegistration.unregister();
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
 
-atatus.notify(new Error('Test Atatus Setup'));
+// atatus.notify(new Error('Test Atatus Setup'));
