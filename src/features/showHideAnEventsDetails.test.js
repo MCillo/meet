@@ -18,7 +18,7 @@ defineFeature(feature, test => {
 
     when('the list of cities is displayed', async () => {
       const AppDOM = AppComponent.container.firstchild;
-      const EventListDOM = AppDOM.querySelector('#event-list');
+      const EventListDOM = AppDOM.querySelector('#event-list');  // ERROR 
 
       await waitFor(() => {
         const EventListItems = within(EventListDOM).queryAllByRole('listitem');
@@ -55,7 +55,7 @@ defineFeature(feature, test => {
     then('the details for the selected event are displayed to the user', () => {
       const eventDom = AppComponent.container.firstChild;
       const details = eventDom.querySelector('.details');
-      expect(details).toBeInTheDocument();
+      expect(details).toBeInTheDocument(); //ERROR
     });
   });
 
@@ -78,7 +78,7 @@ defineFeature(feature, test => {
 
       const eventDom = AppComponent.container.firstChild;
       const details = eventDom.querySelector('.details');
-      expect(details).toBeInTheDocument();
+      expect(details).toBeInTheDocument(); // ERROR
     });
 
     when('the user closes the event details view', async () => {
