@@ -41,6 +41,7 @@ export const getEvents = async () => {
     const response = await fetch(url);
     const result = await response.json();
     if (result) {
+      NProgress.done();
       return result.events;
     } else return null;
   }
