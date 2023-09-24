@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://MCillo.github.io/meet",
   "dependencies": {
+    "@tanem/react-nprogress": "^5.0.51",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
@@ -12,6 +13,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
+    "recharts": "^2.8.0",
     "web-vitals": "^2.1.4",
     "workbox-background-sync": "^6.6.0",
     "workbox-broadcast-update": "^6.6.0",
