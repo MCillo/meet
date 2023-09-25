@@ -19,3 +19,10 @@ console.error = (...args) => {
 }
 
 jest.setTimeout(30000); // sets timeout to 30 seconds
+
+const { ResizeObserver } = window;
+
+beforeEach(() => {
+    //@ts-ignore
+    delete
+})
