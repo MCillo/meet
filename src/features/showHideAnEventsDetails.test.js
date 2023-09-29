@@ -17,13 +17,16 @@ defineFeature(feature, test => {
     });
 
     when('the list of cities is displayed', async () => {
+
       const AppDOM = AppComponent.container.firstchild;
 
-
-      const EventListDOM = AppDOM.querySelector('event-list')  // ERROR 
+      // screen.logTestingPlaygroundURL();
+      // const EventListDOM = AppDOM.querySelector('event-list')  // ERROR 
 
 
       await waitFor(() => {
+        // const EventListDOM = AppDOM.querySelector('event-list')  // ERROR 
+        const EventListDOM = screen.getByTestId('event-list');
         const EventListItems = within(EventListDOM).queryAllByRole('listitem');
         expect(EventListItems.length).toBe(32);
       })
